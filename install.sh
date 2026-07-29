@@ -69,7 +69,15 @@ elif command -v curl >/dev/null 2>&1 || command -v wget >/dev/null 2>&1; then
     wget -qO "$TMP/src.tgz" "$URL" || die "Download failed: $URL"
   fi
   tar -xzf "$TMP/src.tgz" -C "$TMP"
-  EXTRACTED="$(find "$TMP" -maxdepth 1 -type d -name '*-*' ! -name src | head -1)"
+  # GitHub wraps the tree in a <repo>-<ref>/ directory; find it by its contents
+  # rather than its name, since refs may contain slashes or dashes.
+  EXTRACTED=''
+  for d in "$TMP"/*/; do
+    d="${d%/}"
+    [ "$d" = "$SRC" ] && continue
+    [ -d "$d/skills" ] || continue
+    EXTRACTED="$d"; break
+  done
   [ -n "$EXTRACTED" ] || die "Unexpected tarball layout."
   rmdir "$SRC"; mv "$EXTRACTED" "$SRC"
 else
