@@ -4,41 +4,47 @@ A collection of [Claude Code](https://claude.com/claude-code) skills I find usef
 
 Write a PRD → break it into a plan → break that into issues → build it with TDD → review and adversarially verify the PRs → audit and simplify what you shipped.
 
-**17 skills. Two commands to install. Same commands on macOS, Linux, and Windows.**
+**17 skills. One command. macOS, Linux, and Windows.**
 
 ---
 
 ## Install
 
-### Recommended — as a plugin
+```
+npx skills@latest add arturlimaaa/skills
+```
 
-Works identically on macOS, Linux, and Windows. Run in your terminal:
+That's it. One command, identical on every platform, and it works for **more than just Claude Code** — [skills.sh](https://skills.sh) installs into Cursor, Codex, Copilot, Windsurf, Gemini, Cline, Zed, Amp, and a dozen others. It gives you an interactive picker so you can take only the skills you want.
+
+Add `-g` to install globally (user-level) instead of into the current project, and `--all` to take everything without prompting:
+
+```
+npx skills@latest add arturlimaaa/skills -g          # all your projects
+npx skills@latest add arturlimaaa/skills --all       # no prompts
+npx skills@latest add arturlimaaa/skills --list      # just show me what's in here
+```
+
+Skills land in `.agents/skills/`, get symlinked into each agent's own directory, and are recorded in `skills-lock.json` so a teammate can restore the exact set with `npx skills@latest experimental_install`.
+
+Requires Node, which is where `npx` comes from. The two options below need no Node at all.
+
+<details>
+<summary>Alternative — as a Claude Code plugin</summary>
+
+Claude Code only, but no Node dependency, and it installs as one bundle you can update or remove in a single step without touching your `~/.claude/skills` directory:
 
 ```
 claude plugin marketplace add arturlimaaa/skills
 claude plugin install artur-skills@arturlimaaa-skills
 ```
 
-Or, from inside a Claude Code session, run the same two as slash commands:
+The same two work as slash commands inside a session (`/plugin marketplace add …`). Restart Claude Code and the skills are live.
 
-```
-/plugin marketplace add arturlimaaa/skills
-/plugin install artur-skills@arturlimaaa-skills
-```
-
-Restart Claude Code and the skills are live. This keeps everything in one bundle you can update or remove in one step, and it never touches your existing `~/.claude/skills` directory.
-
-<details>
-<summary>Single-line variant (bash, zsh, PowerShell 7+)</summary>
-
-```
-claude plugin marketplace add arturlimaaa/skills && claude plugin install artur-skills@arturlimaaa-skills
-```
-
-Windows PowerShell 5.1 does not support `&&` — use the two-line form above.
+Two lines rather than one because Windows PowerShell 5.1 has no `&&`. On bash, zsh, or PowerShell 7+ you can chain them.
 </details>
 
-### Alternative — copy the files into `~/.claude/skills`
+<details>
+<summary>Alternative — copy the files into `~/.claude/skills`</summary>
 
 Use this if you'd rather have the skills as loose directories you can edit in place.
 
@@ -56,10 +62,7 @@ irm https://raw.githubusercontent.com/arturlimaaa/skills/main/install.ps1 | iex
 
 The installers are non-destructive by default: an existing skill of the same name is backed up to `<name>.bak-<timestamp>` before being replaced, identical skills are skipped, and symlinked skills are left alone.
 
-<details>
-<summary>Installer options</summary>
-
-Because the script is piped into the shell, options are passed as environment variables:
+**Options.** Because the script is piped into the shell, they're passed as environment variables:
 
 | Variable | Effect |
 | --- | --- |
@@ -155,26 +158,15 @@ The rest are pure Markdown and need nothing beyond Claude Code.
 
 ---
 
-## Updating
+## Updating and removing
 
-**Plugin install:**
+| Installed with | Update | Remove |
+| --- | --- | --- |
+| `npx skills` | `npx skills@latest update` | `npx skills@latest remove` |
+| Plugin | `claude plugin marketplace update arturlimaaa-skills` | `claude plugin uninstall artur-skills` |
+| Script | re-run the install command | delete the directories from `~/.claude/skills` |
 
-```
-claude plugin marketplace update arturlimaaa-skills
-```
-
-**Script install:** re-run the same install command. Existing skills are backed up, then replaced.
-
-## Uninstalling
-
-**Plugin install:**
-
-```
-claude plugin uninstall artur-skills
-claude plugin marketplace remove arturlimaaa-skills
-```
-
-**Script install:** delete the directories you no longer want from `~/.claude/skills`.
+Re-running the shell installer backs up any skill you've edited locally to `<name>.bak-<timestamp>` before replacing it, so local changes are never silently lost.
 
 ---
 
