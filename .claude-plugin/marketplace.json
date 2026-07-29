@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "arturlimaaa-skills",
+  "description": "Artur's collection of Claude Code skills for planning, reviewing, testing, and shipping software.",
+  "owner": {
+    "name": "arturlimaaa",
+    "url": "https://github.com/arturlimaaa"
+  },
+  "plugins": [
+    {
+      "name": "artur-skills",
+      "description": "17 skills covering the full loop: write a PRD, break it into a plan and issues, build it with TDD, review and adversarially verify the PRs, then audit and simplify what you shipped.",
+      "source": "./",
+      "category": "development",
+      "homepage": "https://github.com/arturlimaaa/skills"
+    }
+  ]
+}
