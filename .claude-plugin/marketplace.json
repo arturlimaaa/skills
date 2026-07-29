@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "artur-skills",
-      "description": "17 skills covering the full loop: write a PRD, break it into a plan and issues, build it with TDD, review and adversarially verify the PRs, then audit and simplify what you shipped.",
+      "description": "14 skills covering the full loop: write a PRD, break it into a plan and issues, build it with TDD, review and adversarially verify the PRs, then audit and simplify what you shipped.",
       "source": "./",
       "category": "development",
       "homepage": "https://github.com/arturlimaaa/skills"

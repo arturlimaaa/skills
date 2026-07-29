@@ -4,7 +4,7 @@ A collection of [Claude Code](https://claude.com/claude-code) skills I find usef
 
 Write a PRD → break it into a plan → break that into issues → build it with TDD → review and adversarially verify the PRs → audit and simplify what you shipped.
 
-**17 skills. One command. macOS, Linux, and Windows.**
+**14 skills. One command. macOS, Linux, and Windows.**
 
 ---
 
@@ -117,17 +117,14 @@ cp -R skills/skills/tdd ~/.claude/skills/
 | --- | --- |
 | [`adversarial-pr-verification`](skills/adversarial-pr-verification) | Verifies a PR by re-deriving ground truth — builds, lints, tests — instead of trusting the description. Reports findings as true / false / coverage-gap. |
 | [`autoreview`](skills/autoreview) | Pre-commit and pre-ship code review. Uses Codex by default; Claude and Pi are optional backends. |
-| [`clone-website`](skills/clone-website) | Reverse-engineers a site and rebuilds it section by section, dispatching parallel builder agents in worktrees as it goes. |
 | [`explain-diff`](skills/explain-diff) | Produces a rich HTML explanation of a diff, branch, or PR. |
 | [`graphify`](skills/graphify) | Turns any input — code, docs, papers, images, video — into a persistent knowledge graph with god nodes, community detection, and query/path/explain tools. |
 | [`grill-me`](skills/grill-me) | Interviews you about a plan or design relentlessly, resolving every branch of the decision tree before you build. |
 | [`handoff`](skills/handoff) | Compacts the current conversation into a handoff document another agent can pick up cold. |
 | [`improve-codebase-architecture`](skills/improve-codebase-architecture) | Scans for deepening opportunities, presents them as a visual HTML report, then grills you through whichever one you pick. |
-| [`lizard`](skills/lizard) | Removes the tells of AI-generated writing — inflated symbolism, rule of three, em dash overuse, negative parallelisms. Based on Wikipedia's "Signs of AI writing". |
 | [`musk-audit`](skills/musk-audit) | Runs the five-step algorithm — question requirements, delete, simplify, accelerate, automate — in strict order, with adversarial verification on every finding. |
 | [`prd-to-plan`](skills/prd-to-plan) | Turns a PRD into a multi-phase implementation plan built from tracer-bullet vertical slices. |
 | [`qa`](skills/qa) | Conversational QA session — you describe bugs in plain language, it files the GitHub issues. |
-| [`taste-frontend`](skills/taste-frontend) | Anti-slop frontend work for landing pages, portfolios, and redesigns. Audit-first on redesigns, with a strict pre-flight check. |
 | [`tdd`](skills/tdd) | Test-driven development with a real red-green-refactor loop. |
 | [`teach`](skills/teach) | Teaches you a new skill or concept inside a dedicated workspace, tracking missions and a learning record. |
 | [`to-issues`](skills/to-issues) | Breaks a plan, spec, or PRD into independently-grabbable issues on your tracker, as tracer-bullet vertical slices. |
@@ -152,7 +149,6 @@ Claude Code is the only hard requirement. Individual skills reach for extra tool
 | `autoreview` | [`codex`](https://github.com/openai/codex) CLI (default backend), `gh`, `jq`, Python 3 |
 | `adversarial-pr-verification`, `qa` | [`gh`](https://cli.github.com) CLI, authenticated |
 | `graphify` | Python 3 (or [`uv`](https://docs.astral.sh/uv/)), Node |
-| `clone-website` | [Playwright](https://playwright.dev) via `npx` |
 
 The rest are pure Markdown and need nothing beyond Claude Code.
 
