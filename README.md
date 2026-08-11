@@ -116,6 +116,7 @@ cp -R skills/skills/tdd ~/.claude/skills/
 | Skill | What it does |
 | --- | --- |
 | [`adversarial-pr-verification`](skills/adversarial-pr-verification) | Verifies a PR by re-deriving ground truth — builds, lints, tests — instead of trusting the description. Reports findings as true / false / coverage-gap. |
+| [`autopilot`](skills/autopilot) | Drives a long backlog to completion one checkpoint at a time, where nothing is marked done without a gate command you ran yourself and an adversarial pass that tried to refute it. |
 | [`autoreview`](skills/autoreview) | Pre-commit and pre-ship code review. Uses Codex by default; Claude and Pi are optional backends. |
 | [`explain-diff`](skills/explain-diff) | Produces a rich HTML explanation of a diff, branch, or PR. |
 | [`graphify`](skills/graphify) | Turns any input — code, docs, papers, images, video — into a persistent knowledge graph with god nodes, community detection, and query/path/explain tools. |
