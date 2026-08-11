@@ -4,7 +4,7 @@ A collection of [Claude Code](https://claude.com/claude-code) skills I find usef
 
 Write a PRD → break it into a plan → break that into issues → build it with TDD → review and adversarially verify the PRs → audit and simplify what you shipped.
 
-**14 skills. One command. macOS, Linux, and Windows.**
+**16 skills. One command. macOS, Linux, and Windows.**
 
 ---
 
@@ -129,6 +129,7 @@ cp -R skills/skills/tdd ~/.claude/skills/
 | [`tdd`](skills/tdd) | Test-driven development with a real red-green-refactor loop. |
 | [`teach`](skills/teach) | Teaches you a new skill or concept inside a dedicated workspace, tracking missions and a learning record. |
 | [`to-issues`](skills/to-issues) | Breaks a plan, spec, or PRD into independently-grabbable issues on your tracker, as tracer-bullet vertical slices. |
+| [`worktree`](skills/worktree) | Gives each line of work its own directory instead of switching branches, including the gitignored setup a fresh worktree silently lacks. |
 | [`write-a-prd`](skills/write-a-prd) | Builds a PRD through user interview, codebase exploration, and module design, then submits it as a GitHub issue. |
 
 ### Suggested pipeline
@@ -137,7 +138,7 @@ cp -R skills/skills/tdd ~/.claude/skills/
 write-a-prd  →  prd-to-plan  →  to-issues  →  tdd  →  autoreview  →  adversarial-pr-verification  →  musk-audit
 ```
 
-`grill-me` slots in anywhere you want a plan stress-tested. `handoff` slots in anywhere you run out of context.
+`grill-me` slots in anywhere you want a plan stress-tested. `handoff` slots in anywhere you run out of context. `worktree` runs underneath all of it, so two of these can be in flight at once without one stashing over the other.
 
 ---
 
@@ -169,10 +170,18 @@ Re-running the shell installer backs up any skill you've edited locally to `<nam
 
 ## Not included
 
-My `~/.claude/skills` also carries LangChain's official skill set — `deep-agents-*`, `langchain-*`, `langgraph-*`, `langsmith-*`. Those aren't mine to redistribute, and they're better installed from the source so you track upstream:
+Two sets sit in my `~/.claude/skills` and stay out of here. Neither is mine to redistribute, and both are better installed from source so you track upstream.
+
+LangChain's official skill set — `deep-agents-*`, `langchain-*`, `langgraph-*`, `langsmith-*`:
 
 ```
 https://github.com/langchain-ai/langchain-skills
+```
+
+Matt Pocock's `wayfinder`, which plans work too big for one session as a map of decision tickets on your issue tracker. It calls `/grilling`, `/domain-modeling`, `/research` and `/prototype` from the same collection, so a lone copy of it has nothing to call:
+
+```
+https://github.com/mattpocock/skills
 ```
 
 ## License
