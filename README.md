@@ -4,7 +4,7 @@ A collection of [Claude Code](https://claude.com/claude-code) skills I find usef
 
 Write a PRD → break it into a plan → break that into issues → build it with TDD → review and adversarially verify the PRs → audit and simplify what you shipped.
 
-**14 skills. One command. macOS, Linux, and Windows.**
+**15 skills. One command. macOS, Linux, and Windows.**
 
 ---
 
@@ -116,6 +116,7 @@ cp -R skills/skills/tdd ~/.claude/skills/
 | Skill | What it does |
 | --- | --- |
 | [`adversarial-pr-verification`](skills/adversarial-pr-verification) | Verifies a PR by re-deriving ground truth — builds, lints, tests — instead of trusting the description. Reports findings as true / false / coverage-gap. |
+| [`autopilot`](skills/autopilot) | Sets up and supervises an unattended agent loop that works a backlog one checkpoint per iteration, proving each with a gate command and refuting its own work with three independent lenses before recording anything. |
 | [`autoreview`](skills/autoreview) | Pre-commit and pre-ship code review. Uses Codex by default; Claude and Pi are optional backends. |
 | [`explain-diff`](skills/explain-diff) | Produces a rich HTML explanation of a diff, branch, or PR. |
 | [`graphify`](skills/graphify) | Turns any input — code, docs, papers, images, video — into a persistent knowledge graph with god nodes, community detection, and query/path/explain tools. |
@@ -136,7 +137,7 @@ cp -R skills/skills/tdd ~/.claude/skills/
 write-a-prd  →  prd-to-plan  →  to-issues  →  tdd  →  autoreview  →  adversarial-pr-verification  →  musk-audit
 ```
 
-`grill-me` slots in anywhere you want a plan stress-tested. `handoff` slots in anywhere you run out of context.
+`grill-me` slots in anywhere you want a plan stress-tested. `handoff` slots in anywhere you run out of context. `autopilot` wraps the `to-issues → tdd → autoreview` stretch when you want it run overnight rather than by hand.
 
 ---
 
@@ -149,6 +150,7 @@ Claude Code is the only hard requirement. Individual skills reach for extra tool
 | `autoreview` | [`codex`](https://github.com/openai/codex) CLI (default backend), `gh`, `jq`, Python 3 |
 | `adversarial-pr-verification`, `qa` | [`gh`](https://cli.github.com) CLI, authenticated |
 | `graphify` | Python 3 (or [`uv`](https://docs.astral.sh/uv/)), Node |
+| `autopilot` | `bash` or `pwsh` to run the driver, and a repo with a gate set that already passes |
 
 The rest are pure Markdown and need nothing beyond Claude Code.
 

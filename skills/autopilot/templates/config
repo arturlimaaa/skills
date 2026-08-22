@@ -1,0 +1,17 @@
+# Autopilot driver configuration. Read by run.sh and run.ps1.
+# Lines are key=value. Comments start with #.
+
+# The only branch the loop may run on. The driver refuses to start on any other.
+branch=<BRANCH>
+
+# Working trees the driver checks for uncommitted work after each iteration,
+# comma separated, relative to the repo root. Add a sibling repo here if any
+# gate does its work there: a check that reads only this tree sees it clean
+# while the other holds uncommitted work, and the next iteration then starts
+# something new on top of it.
+trees=.
+
+# The command that runs one iteration. It receives PROMPT.md on stdin and must
+# exit when the iteration ends. run.ps1 splits this on whitespace, so keep it
+# free of quoted arguments containing spaces.
+agent=claude -p --permission-mode acceptEdits
