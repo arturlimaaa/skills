@@ -4,7 +4,7 @@ A collection of [Claude Code](https://claude.com/claude-code) skills I find usef
 
 Write a PRD → break it into a plan → break that into issues → build it with TDD → review and adversarially verify the PRs → audit and simplify what you shipped.
 
-**15 skills. One command. macOS, Linux, and Windows.**
+**16 skills. One command. macOS, Linux, and Windows.**
 
 ---
 
@@ -119,6 +119,7 @@ cp -R skills/skills/tdd ~/.claude/skills/
 | [`autopilot`](skills/autopilot) | Sets up and supervises an unattended agent loop that works a backlog one checkpoint per iteration, proving each with a gate command and refuting its own work with three independent lenses before recording anything. |
 | [`autoreview`](skills/autoreview) | Pre-commit and pre-ship code review. Uses Codex by default; Claude and Pi are optional backends. |
 | [`explain-diff`](skills/explain-diff) | Produces a rich HTML explanation of a diff, branch, or PR. |
+| [`gap-dossier`](skills/gap-dossier) | Sweeps a field for open gaps, adversarially refutes each one for novelty, then ranks the survivors on value against cost so you know what to actually start. |
 | [`graphify`](skills/graphify) | Turns any input — code, docs, papers, images, video — into a persistent knowledge graph with god nodes, community detection, and query/path/explain tools. |
 | [`grill-me`](skills/grill-me) | Interviews you about a plan or design relentlessly, resolving every branch of the decision tree before you build. |
 | [`handoff`](skills/handoff) | Compacts the current conversation into a handoff document another agent can pick up cold. |
