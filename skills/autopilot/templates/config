@@ -12,6 +12,7 @@ branch=<BRANCH>
 trees=.
 
 # The command that runs one iteration. It receives PROMPT.md on stdin and must
-# exit when the iteration ends. run.ps1 splits this on whitespace, so keep it
-# free of quoted arguments containing spaces.
+# exit when the iteration ends. Both drivers split this on whitespace into a command and
+# its arguments and never hand it to a shell, so pipes, semicolons, redirections and
+# substitutions do not work here, and neither do quoted arguments containing spaces.
 agent=claude -p --permission-mode acceptEdits
