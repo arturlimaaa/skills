@@ -1,6 +1,6 @@
 ---
 name: write-a-prd
-description: Create a PRD through user interview, codebase exploration, and module design, then submit as a GitHub issue. Use when user wants to write a PRD, create a product requirements document, or plan a new feature.
+description: Create a PRD through user interview, codebase exploration, and module design, then submit as a GitHub issue once the user confirms. Use when user wants to write a PRD, create a product requirements document, or plan a new feature.
 ---
 
 This skill will be invoked when the user wants to create a PRD. You may skip steps if you don't consider them necessary.
@@ -17,7 +17,7 @@ A deep module (as opposed to a shallow module) is one which encapsulates a lot o
 
 Check with the user that these modules match their expectations. Check with the user which modules they want tests written for.
 
-5. Once you have a complete understanding of the problem and solution, use the template below to write the PRD. The PRD should be submitted as a GitHub issue.
+5. Once you have a complete understanding of the problem and solution, use the template below to write the PRD. Show the complete PRD in the conversation.
 
 <prd-template>
 
@@ -66,3 +66,11 @@ A list of testing decisions that were made. Include:
 ## Out of Scope
 
 A description of the things that are out of scope for this PRD.
+
+</prd-template>
+
+6. Ask the user whether to submit the PRD as a GitHub issue. Run `gh repo view --json visibility,nameWithOwner` first and name the repository and its visibility in the question. A PRD is an unreleased roadmap, so the user needs to know where it will land.
+
+Submit only on an explicit yes. Never submit to a PUBLIC repository unless the user confirmed that repository specifically, having been told it is public.
+
+If the user declines or does not answer, write the PRD to `./plans/<feature>.md` instead and tell the user the path.

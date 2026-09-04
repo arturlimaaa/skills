@@ -101,7 +101,11 @@ reach an agent working in a worktree.
 Every template marks its project-specific parts with `<ANGLE BRACKETS>`. Leave none of them.
 
 - `autopilot/config` — the branch the loop is allowed to run on, the working trees the driver
-  watches, and the agent command.
+  watches, and the agent command. Both drivers run the `agent=` value as a command and its
+  arguments, split on whitespace and never handed to a shell, so pipes, semicolons, redirections
+  and substitutions do not work there and neither do quoted arguments containing spaces. The file
+  is tracked, and the value runs on the machine driving the loop, outside any agent's permission
+  system: review a diff to `autopilot/config` as a code change, not as configuration.
 - `GUARDRAILS.md` §1 — the forbidden actions from step 1, **each with its consequence attached**.
   A rule whose reason is lost gets relaxed by the next person who finds it inconvenient.
 - `GUARDRAILS.md` §3 — the repo's own conventions, and the list of documents the repo keeps in step

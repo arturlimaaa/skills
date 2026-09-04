@@ -46,7 +46,22 @@ Keep as a single issue when:
 
 ### 4. File the GitHub issue(s)
 
-Create issues with `gh issue create`. Do NOT ask the user to review first — just file and share URLs.
+Create issues with `gh issue create`.
+
+Before filing anything, run `gh repo view --json visibility,nameWithOwner` and know the answer.
+
+If the repo is **public**: show the full rendered body of each issue you are about to file, state plainly that it will be world-readable and search-indexed, and wait for an explicit yes. For a breakdown, ask once covering every issue in it, not once per issue.
+
+If the repo is **private**: show the rendered bodies once and file on a single confirmation. Keep this lighter than the public path — one line of assent is enough.
+
+Never put these in an issue body:
+
+- Credentials, tokens, or key fragments
+- Customer or account names
+- Internal hostnames or IP addresses
+- File contents the user pasted
+
+Substitute a placeholder such as `<redacted hostname>` and say in the issue that you redacted it.
 
 Issues must be **durable** — they should still make sense after major refactors. Write from the user's perspective.
 

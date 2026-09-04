@@ -44,8 +44,14 @@ want_branch="$(cfg branch)"
 trees_raw="$(cfg trees)"
 agent_cmd="$(cfg agent)"
 
-[ -n "$want_branch" ] || { echo "config has no branch=" >&2; exit 1; }
-[ -n "$agent_cmd" ]   || { echo "config has no agent=" >&2; exit 1; }
+# The prompt reaches the agent on stdin, redirected from the file rather than piped, so the
+# agent command in `config` stays a plain command line. It is split on whitespace into a command
+# and its arguments and never evaluated, so a quoted argument containing spaces does not survive
+# and no metacharacter in it is interpreted. Keep that line free of both.
+read -ra agent_argv <<< "$agent_cmd"
+
+[ -n "$want_branch" ]         || { echo "config has no branch=" >&2; exit 1; }
+[ "${#agent_argv[@]}" -gt 0 ] || { echo "config has no agent=" >&2; exit 1; }
 
 cd "$root"
 
@@ -90,10 +96,13 @@ for ((i = 1; i <= iterations; i++)); do
   printf '\n=== iteration %d of %d ===\n' "$i" "$iterations"
 
   if [ "$dry_run" -eq 1 ]; then
-    echo "(dry run) would run: $agent_cmd"
+    echo "(dry run) would run: ${agent_argv[*]}"
   else
     # A fresh process per iteration is the point. Nothing carries over but the files.
-    eval "$agent_cmd" < "$prompt"
+    # A non-zero exit must not abort the script: the checks below are written for that case.
+    agent_status=0
+    "${agent_argv[@]}" < "$prompt" || agent_status=$?
+    [ "$agent_status" -eq 0 ] || printf '\nagent exited %d\n' "$agent_status" >&2
   fi
 
   if [ -f "$halt" ]; then
